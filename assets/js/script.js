@@ -1,13 +1,14 @@
 var highscoreEl = document.querySelector(".highscore-button");
+var startEl = document.querySelector(".start-button");
 var timerEl = document.querySelector(".timer");
 
-highscoreEl.addEventListener("click", function () {
+startEl.addEventListener("click", function () {
   // createBlankWord(word);
   timer();
 });
 
 function timer() {
-  timeRemaining = 10;
+  timeRemaining = 60;
   console.log(timeRemaining);
   timerEl.textContent = timeRemaining;
   let interval = setInterval(function () {

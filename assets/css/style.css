@@ -47,7 +47,7 @@ h3 {
 
 a {
   font-size: 3rem;
-  font-style: italic;
+  font-weight: bold;
 }
 
 span {
@@ -56,6 +56,10 @@ span {
 
 main {
   margin: 2rem 2rem 2rem 2rem;
+}
+
+.center-content {
+  text-align: center;
 }
 
 header {
