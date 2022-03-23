@@ -1,0 +1,66 @@
+/* 
+   TABLE OF CONTENTS
+   
+   1.0 - Globals
+   2.0 - Header
+   3.0 - Body
+   4.0 - Footer
+   5.0 - Media Queries
+      5.1 - Medium Screens
+      5.2 - Large Screens
+*/
+
+/*** 1.0 - Globals ***/
+:root {
+  --light: #bbbdf6;
+  --dark: #625f63;
+  --secondLight: #625f63;
+  --middle: #797a9e;
+  --secondDark: #72727e;
+  --transition: all 0.2s ease-in-out;
+}
+
+* {
+  font-family: "Segoe UI", "Frutiger", "Dejavu Sans", "Helvetica Neue", Arial,
+    sans-serif;
+  line-height: 1.5;
+}
+
+html {
+  /* set 1rem to 10px instead of native 16px to make it easier to calculate font-size values for the rest of the page (e.g. 1.6rem is 16px, 2.0rem is 20px, etc.) */
+  font-size: 62.5%;
+  /* when you click the navigation links this will scroll to the parts of the page slowly */
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+a {
+  font-size: 3rem;
+  font-style: italic;
+}
+
+span {
+  font-size: 3rem;
+}
+
+main {
+  margin: 2rem 2rem 2rem 2rem;
+}
+
+header {
+  margin: 1rem 1rem 0 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
