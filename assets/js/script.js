@@ -2,7 +2,11 @@ var highscoreEl = document.querySelector(".highscore-button");
 var startContentEl = document.querySelector(".start-content");
 var startEl = document.querySelector(".start-button");
 var timerEl = document.querySelector(".timer");
-
+var questionContentEl = document.querySelector(".question-content");
+var questionEl = document.querySelector(".question");
+var answersEl = document.querySelector(".answers");
+var currentQuestionIndex = 0;
+// var answeredQuestions = []; This was potential for a random order if I wanted to implement that
 var questions = [
   {
     question: "What punctuation ends a method in Javascript?",
@@ -48,11 +52,29 @@ startEl.addEventListener("click", function () {
   timer();
 });
 
+function showQuestions() {
+  var quizQuestion = questions[currentQuestionIndex];
+  answersEl.innerHTML = "";
+  questionEl.textContent = quizQuestion.question;
+  quizQuestion.answers.forEach(function (answer) {
+    var liEl = document.createElement("li");
+    liEl.textContent = answer;
+    answersEl.appendChild(liEl);
+  });
+
+  if (currentQuestionIndex === questions.length - 1) {
+    currentQuestionIndex = 0;
+  } else {
+    currentQuestionIndex++;
+  }
+}
+
 function timer() {
   timeRemaining = 60;
   console.log(timeRemaining);
   timerEl.textContent = timeRemaining;
   let interval = setInterval(function () {
+    showQuestions();
     timeRemaining--;
     timerEl.textContent = timeRemaining;
     if (timeRemaining === 0) {
