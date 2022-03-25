@@ -58,8 +58,12 @@ main {
   margin: 2rem 2rem 2rem 2rem;
 }
 
-.center-content {
+.start-content {
   text-align: center;
+}
+
+.start-button {
+  margin: 2rem 0;
 }
 
 header {
