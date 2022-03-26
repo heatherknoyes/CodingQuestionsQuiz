@@ -49,7 +49,6 @@ a,
 li {
   font-size: 3rem;
   font-weight: bold;
-  display: block;
 }
 
 span {
@@ -58,6 +57,8 @@ span {
 
 main {
   margin: 2rem 2rem 2rem 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .start-content {
@@ -70,14 +71,23 @@ main {
 
 .question-content {
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  display: inline-block;
+  max-width: 70%;
 }
 
-.answers {
+.answer {
+  margin: 1rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
   background-color: var(--light);
+  text-align: left;
+  display: block;
+  list-style: decimal;
+}
+
+.answer:hover {
+  transition: var(--transition);
+  opacity: 50%;
 }
 
 .break {
