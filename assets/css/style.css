@@ -61,6 +61,15 @@ main {
   justify-content: center;
 }
 
+.highscore-content {
+  display: none;
+}
+
+.return-button {
+  text-align: center;
+  margin: 2rem 0;
+}
+
 .start-content {
   text-align: center;
 }
@@ -100,4 +109,8 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.hide {
+  display: none;
 }
