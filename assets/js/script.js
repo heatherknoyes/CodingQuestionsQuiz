@@ -1,5 +1,6 @@
 var highscoreButtonEl = document.querySelector(".highscore-button");
 var highscoreEl = document.querySelector(".highscore-content");
+var highscoreUsersEl = document.querySelector(".highscores");
 var returnButtonEl = document.querySelector(".return-button");
 
 var startContentEl = document.querySelector(".start-content");
@@ -173,14 +174,29 @@ function highscoreScreen() {
   startContentEl.style.display = "none";
   questionContentEl.style.display = "none";
   highscoreEl.style.display = "initial";
-
   // set new submission to local storage
   localStorage.setItem("highScoreRecord", JSON.stringify(highscoreArray));
 
-  if (localStorage !== null) {
-    var highScoreRecordArray = highScoreRecord.sort((a, b) =>
-      a.score - b.score ? -1 : 1
-    );
+  fillHighScores();
+}
+
+function fillHighScores() {
+  var highScores = localStorage.getItem("highScoreRecord");
+  var highScoresArray = JSON.parse(highScores);
+  console.log(highScoresArray);
+  highscoreUsersEl.innerHTML = "";
+  highScoresArray = highScoresArray.sort((a, b) => b.highscore - a.highscore);
+  if (highScoresArray !== null) {
+    highScoresArray.forEach(function (record) {
+      var liEl = document.createElement("li");
+      liEl.className = "highScore";
+      liEl.textContent = record.firstName + ": " + record.highscore;
+      highscoreUsersEl.appendChild(liEl);
+    });
+
+    // var highScoreRecordArray = highScoreRecord.sort((a, b) =>
+    //   a.score - b.score ? -1 : 1
+    // );
   }
 }
 
