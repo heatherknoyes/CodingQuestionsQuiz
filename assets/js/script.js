@@ -10,6 +10,10 @@ var questionEl = document.querySelector(".question");
 var answersEl = document.querySelector(".answer-block");
 
 var timerEl = document.querySelector(".timer");
+var doneScreenEl = document.querySelector(".doneScreen-content");
+var userEl = document.querySelector("#user");
+var scoreEl = document.querySelector(".score");
+var submitButtonEl = document.querySelector(".submit-button");
 var timeRemaining = timerEl.textContent;
 
 var highscoreArray = [];
@@ -71,24 +75,29 @@ function init() {
 function setEventListeners() {
   startButtonEl.addEventListener("click", function () {
     startContentEl.style.display = "none";
-    questionContentEl.style.display = "inline-block";
+    questionContentEl.style.display = "initial";
     timer();
     showQuestions();
   });
 
   highscoreButtonEl.addEventListener("click", function () {
-    startContentEl.style.display = "none";
-    questionContentEl.style.display = "none";
-    highscoreEl.style.display = "initial";
-    clearInterval();
-    timeRemaining = 0;
-    console.log("This will now display all of the high scores");
+    highscoreScreen();
+    clearInterval(interval);
   });
 
   returnButtonEl.addEventListener("click", function () {
-    highscoreEl.style.display = "none";
-    startContentEl.style.display = "initial";
-    console.log("This will now display all of the high scores");
+    startScreen();
+  });
+
+  submitButtonEl.addEventListener("click", function () {
+    // create record object from submission
+    var highScoreRecord = {
+      firstName: userEl.value,
+      highscore: score,
+    };
+    highscoreArray.push(highScoreRecord);
+
+    highscoreScreen();
   });
 
   answersEl.addEventListener("click", function (event) {
@@ -98,12 +107,9 @@ function setEventListeners() {
     for (var i = 0; i < questions.length; i++) {
       if (parentQuestion.textContent === questions[i].question) {
         var guessIndex = questions[i].answers.indexOf(target.textContent);
-        if (guessIndex === questions[i].answer) {
-          score++;
-        } else {
-          score--;
+        if (guessIndex !== questions[i].answer) {
+          timeRemaining -= 10;
         }
-
         showQuestions();
         break;
       }
@@ -114,9 +120,12 @@ function setEventListeners() {
 }
 
 function showQuestions() {
+  gameOver();
+
   var quizQuestion = questions[currentQuestionIndex];
   answersEl.innerHTML = "";
   questionEl.textContent = quizQuestion.question;
+
   quizQuestion.answers.forEach(function (answer) {
     var liEl = document.createElement("li");
     liEl.className = "answer";
@@ -124,27 +133,61 @@ function showQuestions() {
     answersEl.appendChild(liEl);
   });
 
-  if (currentQuestionIndex === questions.length - 1) {
+  currentQuestionIndex++;
+}
+
+function gameOver() {
+  if (currentQuestionIndex === questions.length || timeRemaining === 0) {
+    scoreEl.textContent = score;
+    timeRemaining = 0;
     currentQuestionIndex = 0;
-  } else {
-    currentQuestionIndex++;
+    clearInterval(interval);
+    gameOverScreen();
   }
 }
 
 // if time remaining is zero then all the right answers need to be added up and stored so that the user can put it into the high score board
 function timer() {
   timeRemaining = 60;
-  let interval = setInterval(function () {
+  timerEl.textContent = timeRemaining;
+  interval = setInterval(function () {
+    score = timeRemaining;
     timerEl.textContent = timeRemaining;
-    if (timeRemaining === 0) {
+    if (timeRemaining <= 0) {
       clearInterval(interval);
       // Display a different screen if the time is at zero
-      questionContentEl.style.display = "none";
-      highscoreEl.style.display = "initial";
-      console.log(score);
+      gameOver();
     }
     timeRemaining--;
   }, 1000);
+}
+
+function gameOverScreen() {
+  questionContentEl.style.display = "none";
+  doneScreenEl.style.display = "initial";
+}
+
+function highscoreScreen() {
+  timerEl.textContent = 0;
+  doneScreenEl.style.display = "none";
+  startContentEl.style.display = "none";
+  questionContentEl.style.display = "none";
+  highscoreEl.style.display = "initial";
+
+  // set new submission to local storage
+  localStorage.setItem("highScoreRecord", JSON.stringify(highscoreArray));
+
+  if (localStorage !== null) {
+    var highScoreRecordArray = highScoreRecord.sort((a, b) =>
+      a.score - b.score ? -1 : 1
+    );
+  }
+}
+
+function startScreen() {
+  highscoreEl.style.display = "none";
+  startContentEl.style.display = "initial";
+  timerEl.textContent = 0;
 }
 
 init();

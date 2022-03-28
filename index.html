@@ -11,21 +11,30 @@
   <body>
     <header>
       <a class="highscore-button">View Highscores</a>
-      <h2>Time: <span class="timer">60</span></h2>
+      <h2>Time: <span class="timer">0</span></h2>
     </header>
     <main>
       <section class="start-content">
         <h2>Coding Question Quiz</h2>
+        <h3>
+          This quiz will test your basic knowledge of the JavaScript language,
+          time will be taken away when you get a question wrong so be careful!
+        </h3>
         <button class="start-button">START</button>
       </section>
-      <section class="question-content">
+      <section class="question-content hide">
         <h2 class="question"></h2>
-        <div class="break"></div>
         <ol class="answer-block"></ol>
       </section>
-      <section class="highscore-content">
+      <section class="doneScreen-content hide">
+        <h2>All done!</h2>
+        <h3>Your score is: <span class="score"></span></h3>
+        <label for="user">Name: </label>
+        <input type="text" id="user" />
+        <button class="submit-button">SUBMIT</button>
+      </section>
+      <section class="highscore-content hide">
         <h2>High Scores</h2>
-        <div class="break"></div>
         <ol class="highscores"></ol>
         <button class="return-button">RETURN</button>
       </section>
