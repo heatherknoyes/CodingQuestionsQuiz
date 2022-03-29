@@ -34,9 +34,9 @@ This project taught me introductory techniques on I can take input from a user a
 
 The following image shows the web application's appearance in a screenshot:
 
-![The password generator webpage in a full screenshot.](./assets/images/websiteScreenshot.png)
+![The quiz game webpage functionality in a GIF.](./assets/images/QuizGIF.gif)
 
-You can view the deployed application here: https://heatherknoyes.github.io/PasswordGenerator/
+You can view the deployed application here: https://heatherknoyes.github.io/CodingQuestionsQuiz/
 
 ## License
 
