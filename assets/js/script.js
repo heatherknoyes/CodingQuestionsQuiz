@@ -20,7 +20,8 @@ var timeRemaining = timerEl.textContent;
 var highscoreArray = [];
 var currentQuestionIndex = 0;
 var score = 0;
-// var answeredQuestions = []; This was potential for a random order if I wanted to implement that
+
+/* This is the list of questions where answer is the index of the correct answer */
 var questions = [
   {
     question: "What punctuation ends a method in Javascript?",
@@ -61,18 +62,13 @@ var questions = [
   },
 ];
 
-// There need to be four seperate screens.
-
-// Start Screen
-// Playing Screen
-// Ending Add to High Score Screen
-// Viewing all high scores screen
-
+/* Establishes the start of the game and has a listener initializer */
 function init() {
   setEventListeners();
   questionContentEl.style.display = "none";
 }
 
+/* Sets all event listeners for the site */
 function setEventListeners() {
   startButtonEl.addEventListener("click", function () {
     startContentEl.style.display = "none";
@@ -115,11 +111,10 @@ function setEventListeners() {
         break;
       }
     }
-    // Display another element where it tells you it is wrong?
-    // console.log("You guessed WRONG");
   });
 }
 
+/* Displays the question screen after checking if conditions have been met for a game over. */
 function showQuestions() {
   gameOver();
 
@@ -137,6 +132,7 @@ function showQuestions() {
   currentQuestionIndex++;
 }
 
+/* Displays the game over screen if the time is zero or if all questions have been answered. */
 function gameOver() {
   if (currentQuestionIndex === questions.length || timeRemaining === 0) {
     scoreEl.textContent = score;
@@ -147,39 +143,7 @@ function gameOver() {
   }
 }
 
-// if time remaining is zero then all the right answers need to be added up and stored so that the user can put it into the high score board
-function timer() {
-  timeRemaining = 60;
-  timerEl.textContent = timeRemaining;
-  interval = setInterval(function () {
-    score = timeRemaining;
-    timerEl.textContent = timeRemaining;
-    if (timeRemaining <= 0) {
-      clearInterval(interval);
-      // Display a different screen if the time is at zero
-      gameOver();
-    }
-    timeRemaining--;
-  }, 1000);
-}
-
-function gameOverScreen() {
-  questionContentEl.style.display = "none";
-  doneScreenEl.style.display = "initial";
-}
-
-function highscoreScreen() {
-  timerEl.textContent = 0;
-  doneScreenEl.style.display = "none";
-  startContentEl.style.display = "none";
-  questionContentEl.style.display = "none";
-  highscoreEl.style.display = "initial";
-  // set new submission to local storage
-  localStorage.setItem("highScoreRecord", JSON.stringify(highscoreArray));
-
-  fillHighScores();
-}
-
+/* This function fills the items of the high score list and sorts them. */
 function fillHighScores() {
   var highScores = localStorage.getItem("highScoreRecord");
   var highScoresArray = JSON.parse(highScores);
@@ -193,17 +157,49 @@ function fillHighScores() {
       liEl.textContent = record.firstName + ": " + record.highscore;
       highscoreUsersEl.appendChild(liEl);
     });
-
-    // var highScoreRecordArray = highScoreRecord.sort((a, b) =>
-    //   a.score - b.score ? -1 : 1
-    // );
   }
 }
 
+/* This function displays the start screen. */
 function startScreen() {
   highscoreEl.style.display = "none";
   startContentEl.style.display = "initial";
   timerEl.textContent = 0;
+}
+
+/* This function displays the game over screen. */
+function gameOverScreen() {
+  questionContentEl.style.display = "none";
+  doneScreenEl.style.display = "initial";
+}
+
+/* This function starts the display of the high score screen then calls to fill the high score list. */
+function highscoreScreen() {
+  timerEl.textContent = 0;
+  doneScreenEl.style.display = "none";
+  startContentEl.style.display = "none";
+  questionContentEl.style.display = "none";
+  highscoreEl.style.display = "initial";
+  // set new submission to local storage
+  localStorage.setItem("highScoreRecord", JSON.stringify(highscoreArray));
+
+  fillHighScores();
+}
+
+/* Establishes the timer for the game and populates the score as it is based off of the timer. */
+function timer() {
+  timeRemaining = 60;
+  timerEl.textContent = timeRemaining;
+  interval = setInterval(function () {
+    score = timeRemaining;
+    timerEl.textContent = timeRemaining;
+    if (timeRemaining <= 0) {
+      clearInterval(interval);
+      // Display a different screen if the time is at zero
+      gameOver();
+    }
+    timeRemaining--;
+  }, 1000);
 }
 
 init();
