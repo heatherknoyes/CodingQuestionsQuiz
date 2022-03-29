@@ -118,18 +118,20 @@ function setEventListeners() {
 function showQuestions() {
   gameOver();
 
-  var quizQuestion = questions[currentQuestionIndex];
-  answersEl.innerHTML = "";
-  questionEl.textContent = quizQuestion.question;
+  if (currentQuestionIndex < questions.length) {
+    var quizQuestion = questions[currentQuestionIndex];
+    answersEl.innerHTML = "";
+    questionEl.textContent = quizQuestion.question;
 
-  quizQuestion.answers.forEach(function (answer) {
-    var liEl = document.createElement("li");
-    liEl.className = "answer";
-    liEl.textContent = answer;
-    answersEl.appendChild(liEl);
-  });
+    quizQuestion.answers.forEach(function (answer) {
+      var liEl = document.createElement("li");
+      liEl.className = "answer";
+      liEl.textContent = answer;
+      answersEl.appendChild(liEl);
+    });
 
-  currentQuestionIndex++;
+    currentQuestionIndex++;
+  }
 }
 
 /* Displays the game over screen if the time is zero or if all questions have been answered. */
@@ -137,7 +139,6 @@ function gameOver() {
   if (currentQuestionIndex === questions.length || timeRemaining === 0) {
     scoreEl.textContent = score;
     timeRemaining = 0;
-    currentQuestionIndex = 0;
     clearInterval(interval);
     gameOverScreen();
   }
@@ -147,7 +148,6 @@ function gameOver() {
 function fillHighScores() {
   var highScores = localStorage.getItem("highScoreRecord");
   var highScoresArray = JSON.parse(highScores);
-  console.log(highScoresArray);
   highscoreUsersEl.innerHTML = "";
   highScoresArray = highScoresArray.sort((a, b) => b.highscore - a.highscore);
   if (highScoresArray !== null) {
@@ -165,6 +165,7 @@ function startScreen() {
   highscoreEl.style.display = "none";
   startContentEl.style.display = "initial";
   timerEl.textContent = 0;
+  currentQuestionIndex = 0;
 }
 
 /* This function displays the game over screen. */
