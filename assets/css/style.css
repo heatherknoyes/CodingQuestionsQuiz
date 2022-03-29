@@ -73,12 +73,17 @@ main {
 
 .return-button {
   text-align: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
+}
+
+.start-content h2 {
+  font-style: normal;
 }
 
 .start-content {
   text-align: center;
-  max-width: 40%;
+  font-style: italic;
+  max-width: 50%;
 }
 
 .start-button {
@@ -97,15 +102,13 @@ main {
   max-width: 50%;
 }
 
-/* .highScore {
-  margin: 1rem;
-  padding: 0 1rem;
-  border-radius: 1rem;
-  background-color: var(--light);
+.highscores {
+  margin: 1rem 0;
+  border-top: solid black;
+  border-bottom: solid black;
   text-align: left;
   display: block;
-  list-style: decimal;
-} */
+}
 
 .answer {
   margin: 1rem;
