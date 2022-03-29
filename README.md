@@ -2,8 +2,7 @@
 
 ## Description
 
--- edit here --
-The motivation for this project was to create the JavaScript logic behind a password generator. By using simple techniques of arrays, pre-defined functions, logical statements, and creating my own functions I learned how to manipulate data to check if requirements have been fulfilled. I also learned how to manipulate and handle user input and response to determine what data is outputted to the user. The thing I am most proud of with this project is that I was able to implement logic to check if the user criteria had been met with the password. I did this by testing a password with four characters and making sure that the password was regenerated if there were four criteria until all four criteria had been met for the password. With the completion of this project I fulfilled the following user acceptance criteria.
+The motivation for this project was to create a quiz game that helps the user practice their JavaScript knowledge. By using Web APIs, HTML, CSS, and JavaScript I was able to create a simple multi-screen game that the user can interact with. I learned how to create dynamic HTML elements with JavaScript in multiple screens while also using the users local storage in one instance of a game to keep a simple high score history. I also learned how to manipulate and handle user inputs to determine which screen should show next, how the timer and score is affected, and writing over initial HTML text to display different text dynamically as well. The thing I am most proud of with this project is that I was able to use my own design of screen switching to make elements appear and disappear without code reuse. With the completion of this project I fulfilled the following user acceptance criteria.
 
 ```
 GIVEN I am taking a code quiz
@@ -19,8 +18,7 @@ WHEN the game is over
 THEN I can save my initials and my score
 ```
 
--- edit here --
-This project taught me introductory techniques on I can take input from a user and use it to output messaging to the user. In the future, I would try to incorporate the user messaging into a more UI friendly manner such that the prompt does not show OK/Cancel but either has a listener on a toggle in the UI or has a checkbox that I could read. This would make the UX more appealing and intelligent than the prompt way that it is today.
+This project taught me how to use dynamic HTML building using Web APIs with JavaScript. In the future, I would try to incorporate a randomized selection of the questions. In addition, I would love to add better styling to the quiz to give feedback to the user for which questions they got right or which ones they missed. This would make the UX more appealing and intelligent than just a quiz and a score.
 
 ## Installation
 
@@ -28,7 +26,7 @@ This project taught me introductory techniques on I can take input from a user a
 
 2. Open the index.html file in your browser to view the website.
 
-3. If future edits need to be made then the stylesheet can be found under ./assets/css/style.css. The javascript can be found under the ./assets/js/script.js.
+3. If future edits need to be made then the stylesheet can be found under ./assets/css/style.css. The JavaScript can be found under the ./assets/js/script.js.
 
 ## Usage
 
