@@ -79,6 +79,9 @@ function setEventListeners() {
 
   highscoreButtonEl.addEventListener("click", function () {
     highscoreScreen();
+    window.alert(
+      "This will end your current game, and you will not get a score."
+    );
     clearInterval(interval);
   });
 
